@@ -1,0 +1,85 @@
+commit 4868aacb77241bf4fe8077388baf2cf551891e10
+Author: Alisa Luhtonen <luhtonen.alisa@gmail.com>
+Date:   Tue Mar 22 21:35:57 2022 +0200
+
+    harjoittelua
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 164a5f3b729c2b3673129dd0429f6895baad2766
+Author: Alisa Luhtonen <luhtonen.alisa@gmail.com>
+Date:   Tue Mar 22 21:31:20 2022 +0200
+
+    added files 1-3
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 57e48d17fdf5d85f9228846e76083055cdc838dc
+Author: Alisa Luhtonen <luhtonen.alisa@gmail.com>
+Date:   Tue Mar 22 21:19:19 2022 +0200
+
+    tiedosto.txt more changes
+
+ tiedosto.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit af82fb3fd238b4bf661316c6711e9fd289e351ec
+Author: Alisa Luhtonen <luhtonen.alisa@gmail.com>
+Date:   Tue Mar 22 21:17:12 2022 +0200
+
+    tiedosto.txt modified
+
+ tiedosto.txt | 50 +++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 49 insertions(+), 1 deletion(-)
+
+commit a9941483d8b7164e6c39c8e5c1a175ea00e9c466
+Author: Alisa Luhtonen <luhtonen.alisa@gmail.com>
+Date:   Tue Mar 22 21:09:24 2022 +0200
+
+    added stuff
+
+ stuff/jokintiedosto.jpg | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 32e761565869462ce9b8f7a09bdd32ae2b776d05
+Author: Alisa Luhtonen <luhtonen.alisa@gmail.com>
+Date:   Tue Mar 22 21:07:56 2022 +0200
+
+    toinen ja kolmas muokattu
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit d64f3a8c0cb77186f69173177f0cbece4bcff559
+Author: Alisa Luhtonen <luhtonen.alisa@gmail.com>
+Date:   Tue Mar 22 21:06:05 2022 +0200
+
+    kolmas.txt lisäys
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 54d74ad2c7d785760875bc3fa517274b6b861f52
+Author: Alisa Luhtonen <luhtonen.alisa@gmail.com>
+Date:   Tue Mar 22 21:03:43 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 3a90c2157c398524830a30c3ecee0729d3196481
+Author: Alisa Luhtonen <luhtonen.alisa@gmail.com>
+Date:   Tue Mar 22 21:01:09 2022 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
