@@ -1,4 +1,7 @@
 # Otsikko
+## Dokumentaatio
+
+
 ## Tehtävät
 #### Viikko 1
 [gitlog.txt](https://github.com/redpanda321-png/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
