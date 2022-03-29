@@ -5,9 +5,9 @@
 
 ## Käyttöliittymäluonnos
 
-Sovelluksessa on näin alustavasti 3 näkymää sovellus aukeaa päävalikkoon, josta voi siirtyä huippupiste (high scores) -näkymään, jossa nähdään huippupisteet. Päävalikosta voi myös tietenkin aloittaa uuden pelin, mistä siirrytään pelinäkymään.
+Sovelluksessa on näin alustavasti 3 näkymää. Sovellus aukeaa päävalikkoon, josta voi siirtyä Pistenäkymään (high scores). Päävalikosta voi myös aloittaa uuden pelin, mistä siirrytään pelinäkymään.
 
-  Pelinäkymästä näkee kaikki pelin kulkuun ja toiminnalisuuteen liittyvät olennaiset asiat, kuten mm.
+  Pelinäkymästä näkee kaikki pelin kulkuun ja toiminnallisuuteen liittyvät olennaiset asiat, kuten mm.
 - rakennetut tornit
 - hirviöt
 - oma tukikohta
@@ -30,8 +30,11 @@ Pistenäkymään tallentuvat aikaisemmat istunnot, josta näkee voittiko pelin j
 - voi aloittaa pelin
 
 #### Aloitettuaan pelin
+- peliä ohjataan hiiren avulla
 - voi rakentaa torneja
+  - tornit maksavat rahaa, ja ovat valmiita välittömästi
 - hirviöt marssivat tiheässä jonossa ennaltamäärättyä polkua pitkin tukikohtaan päin
+- hirviöitä kaatamalla ansaitsee rahaa
 - hirviöt marssivat ns. aalloittain
   - ensimmäinen aalto vastaa pelin ensimmäistä tasoa, jne.
 - seuraava taso alkaa jonkin tietyn ajan kuluttua edellisen tason päätyttyä
@@ -49,3 +52,12 @@ Pistenäkymään tallentuvat aikaisemmat istunnot, josta näkee voittiko pelin j
 - torneja voi parannella eri tavoin
 - hirviöitä on erityyppisiä
   - esim. nopeampia tai joillekin torneille heikkoja
+- tornit eivät rakennu välittömästi, vaan rakennuksessa kestää
+- erilaisia äänieffektejä kuten esimerkiksi
+  - kun taso alkaa
+  - kun taso päättyy
+  - kun hirviö pääsee tukikohtaan
+- taustamusiikkia
+- mahdollisia animaatioita torneille tai hirviöille
+- rajoitettu ohjattavuus näppäimistölle 
+  - rakennusvalikon valintoja voi tehdä näppäimistöllä
