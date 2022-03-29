@@ -10,6 +10,6 @@
 
   [Maksukortti-testit](https://github.com/redpanda321-png/ot-harjoitustyo/tree/master/laskarit/viikko2/Maksukortti/src/test/java)
 
-    [Unicafe-testit](https://github.com/redpanda321-png/ot-harjoitustyo/tree/master/laskarit/viikko2/Unicafe/src/test/java/com/mycompany/unicafe)
+  [Unicafe-testit](https://github.com/redpanda321-png/ot-harjoitustyo/tree/master/laskarit/viikko2/Unicafe/src/test/java/com/mycompany/unicafe)
 
     
