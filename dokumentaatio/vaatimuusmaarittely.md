@@ -28,7 +28,6 @@ Pistenäkymään tallentuvat aikaisemmat istunnot, josta näkee voittiko pelin j
 - voi nähdä aiempien sessioiden huippupisteet
   - alustavasti tyhjä lista, joka päivittyy sitä mukaan, kun peliä pelataan
 - voi aloittaa pelin
-  - vaikeustason valinta (helppo, normaali, vaikea)
 
 #### Aloitettuaan pelin
 - voi rakentaa torneja
@@ -45,6 +44,7 @@ Pistenäkymään tallentuvat aikaisemmat istunnot, josta näkee voittiko pelin j
 
 ## Jatkokehitysideoita
 
+- vaikeustason valinta (helppo, normaali, vaikea)
 - torneja on erityyppisiä
 - torneja voi parannella eri tavoin
 - hirviöitä on erityyppisiä
