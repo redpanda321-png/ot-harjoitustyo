@@ -1,6 +1,8 @@
 # Otsikko
 ## Dokumentaatio
+[Työaikamäärittely](https://github.com/redpanda321-png/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
+  [Vaatimuusmäärittely](https://github.com/redpanda321-png/ot-harjoitustyo/blob/master/dokumentaatio/vaatimuusmaarittely.md)
 
 ## Tehtävät
 #### Viikko 1
