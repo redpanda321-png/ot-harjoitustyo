@@ -1,4 +1,4 @@
-package org.wb.games.towerdefense;
+package org.wb.games.towerdefense.ui;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
@@ -7,8 +7,9 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
 public class TowerDefense {
 
-    public static final int SCREEN_WIDTH = 720;
-    public static final int SCREEN_HEIGHT = 360;
+    public static final int SCREEN_WIDTH = 1024;
+    public static final int SCREEN_HEIGHT = 768;
+    public static final float ASPECT_RATIO = (float) SCREEN_HEIGHT / (float) SCREEN_WIDTH;
 
     public static void main(String[] args) {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
