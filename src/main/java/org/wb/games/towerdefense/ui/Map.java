@@ -1,34 +1,29 @@
-package org.wb.games.towerdefense.game;
+package org.wb.games.towerdefense.ui;
 
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 public class Map {
 
     String mapName;
-    static TiledMap gameMap;
-    int width;
-    int height;
-    int tileWidth;
-    int tileHeight;
+    public TiledMap gameMap;
+    TiledMapTileLayer gameLayer;
 
 
 
     public Map(String mapName) {
         this.mapName = mapName;
         this.gameMap = new TmxMapLoader().load("src/assets/Tile/" + mapName + ".tmx");
+        this.gameLayer = (TiledMapTileLayer) gameMap.getLayers().get("Game");
     }
 
-    public static TiledMap getMap() {
-        return  gameMap;
+    public TiledMap getMap() {
+        return gameMap;
     }
 
     public TiledMapTileLayer getGameLayer() {
-        return (TiledMapTileLayer) gameMap.getLayers().get("Game");
+        return gameLayer;
     }
 
     public int getWidth() {
@@ -41,9 +36,4 @@ public class Map {
     public int getTileWidth() {
         return (int) gameMap.getProperties().get("tilewidth");
     }
-
-
-
-
-
 }

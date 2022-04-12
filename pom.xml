@@ -17,6 +17,18 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>4.4.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.22.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
@@ -69,6 +81,13 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.3</version>
+                <configuration>
+                    <excludes>
+                        <exclude>/org/wb/games/towerdefense/ui/*</exclude>
+                        <exclude>/org/wb/games/towerdefense/game/Game.class</exclude>
+                        <exclude>/org/wb/games/towerdefense/game/Monster.class</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <id>default-prepare-agent</id>
@@ -102,7 +121,7 @@
                             <archive>
                                 <manifest>
                                     <addClasspath>true</addClasspath>
-                                    <mainClass>org.wb.games.towerdefense.TowerDefense</mainClass>
+                                    <mainClass>org.wb.games.towerdefense.ui.TowerDefense</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>

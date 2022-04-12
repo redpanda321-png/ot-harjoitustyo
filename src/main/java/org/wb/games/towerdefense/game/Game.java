@@ -9,17 +9,20 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
 
+import org.wb.games.towerdefense.ui.Map;
+
 import static org.wb.games.towerdefense.ui.TowerDefense.*;
 
 
 public class Game implements InputProcessor {
     private final OrthogonalTiledMapRenderer tiledMapRenderer;
     private final OrthographicCamera camera;
-    private final TiledMapTileLayer.Cell tower;
     private final TiledMapTileLayer layer;
     private int towerCount = 0;
-    private Monster redCyclops;
-    private Map map;
+    private final Monster redCyclops;
+    private final Map map;
+    private final Tower stoneTower;
+    private final Vector3 mousePos;
 
 
     public Game(final String mapName, final SpriteBatch batch) {
@@ -32,11 +35,13 @@ public class Game implements InputProcessor {
         Gdx.input.setInputProcessor(this);          //
 
         layer = map.getGameLayer();
-        tower = new TiledMapTileLayer.Cell();
-        tower.setTile(map.getMap().getTileSets().getTileSet("TilesetElement").getTile(897));
+//        stoneTower = new Tower("Stone tower", 897, map.getMap().getTileSets().getTileSet("TilesetElement"));
+        stoneTower = new Tower("Stone tower", map.getMap().getTileSets().getTileSet("TilesetElement").getTile(897));
 
         redCyclops = new Monster(batch);
         redCyclops.setPosition(map.getTileWidth() * 4 + redCyclops.getWidth() / 2, SCREEN_HEIGHT - redCyclops.getHeight());
+
+        mousePos = new Vector3();
     }
 
     public void render() {
@@ -44,13 +49,13 @@ public class Game implements InputProcessor {
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
         redCyclops.render();
-
+        mouseUpdate();
+        camera.unproject(mousePos);
     }
 
     @Override
     public boolean keyDown(final int keycode) {
         System.out.println("Key pressed: " + Input.Keys.toString(keycode) + " :" + keycode);
-
         return false;
     }
 
@@ -68,17 +73,12 @@ public class Game implements InputProcessor {
     public boolean touchDown(final int screenX, final int screenY, final int pointer, final int button) {
         System.out.println(screenX + ", " + screenY + ", " + pointer + ", " + button);
 
-        final Vector3 clickCoordinates = new Vector3(screenX, screenY, 0);
-        final Vector3 position = camera.unproject(clickCoordinates);
+        final int cellX = (int) mousePos.x / map.getTileWidth();
+        final int cellY = (int) mousePos.y / map.getTileWidth();
 
-        final int cellX = (int) position.x / map.getTileWidth();
-        final int cellY = (int) position.y / map.getTileWidth();
-        if (cellX < map.getWidth() && layer.getCell(cellX, cellY) == null) {
-            System.out.println(cellX + ", " + cellY);
-            layer.setCell(cellX, cellY, tower);
+        if(stoneTower.buildTower(cellX, cellY, layer)) {
             towerCount++;
         }
-
         return false;
     }
 
@@ -89,7 +89,6 @@ public class Game implements InputProcessor {
 
     @Override
     public boolean touchDragged(final int screenX, final int screenY, final int pointer) {
-
         return false;
     }
 
@@ -110,5 +109,21 @@ public class Game implements InputProcessor {
 
     public void dispose() {
         redCyclops.dispose();
+    }
+
+    public void mouseUpdate() {
+        mousePos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+    }
+
+    public String mousePosition() {
+        return "x: " + (int) mousePos.x + ", " + "y: " + (int) mousePos.y;
+    }
+
+    public float getMouseX() {
+        return mousePos.x;
+    }
+
+    public float getMouseY() {
+        return mousePos.y;
     }
 }
