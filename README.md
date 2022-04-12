@@ -46,3 +46,9 @@ mvn clean package
 java -XstartOnFirstThread -jar target/myJar-jar-with-dependencies.jar
 ```
 voi luoda, sekä suorittaa ohjelman mac OS X:llä
+
+### Checkstyle
+Checkstyle on vielä toteuttamatta.
+
+### Javadoc
+Javadoc on vielä toteuttamatta.
