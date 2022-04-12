@@ -3,8 +3,6 @@ package org.wb.games.towerdefense.game;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
-import org.wb.games.towerdefense.ui.Map;
-
 public class Tower {
 
     private final String name;

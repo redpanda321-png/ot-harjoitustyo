@@ -35,7 +35,6 @@ public class Game implements InputProcessor {
         Gdx.input.setInputProcessor(this);          //
 
         layer = map.getGameLayer();
-//        stoneTower = new Tower("Stone tower", 897, map.getMap().getTileSets().getTileSet("TilesetElement"));
         stoneTower = new Tower("Stone tower", map.getMap().getTileSets().getTileSet("TilesetElement").getTile(897));
 
         redCyclops = new Monster(batch);
