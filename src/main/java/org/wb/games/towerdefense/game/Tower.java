@@ -28,5 +28,9 @@ public class Tower {
         return false;
     }
 
+
+    public int getTowerCount() {
+        return towerCount;
+    }
 }
 

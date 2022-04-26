@@ -11,16 +11,17 @@ public class Monster extends Actor {
 
     private final Animation<TextureAtlas.AtlasRegion> animation;
     private float elapsedTime = 0;
-    private final SpriteBatch batch;
     private final TextureAtlas monsterTextureAtlas;
 
-    public Monster(final SpriteBatch batch) {
-        this.batch = batch;
-        monsterTextureAtlas = new TextureAtlas(Gdx.files.internal("src/assets/Monster/RedCyclops/RedCyclops.atlas"));
-        animation = new Animation<>(1/10f, monsterTextureAtlas.getRegions());
-        final var texture =animation.getKeyFrame(elapsedTime);
-        setBounds(getX(), getY(), texture.originalWidth,texture.originalHeight);
+    private int checkpointReached;
 
+    public Monster() {
+        monsterTextureAtlas = new TextureAtlas(Gdx.files.internal("src/assets/Monster/RedCyclops/RedCyclops.atlas"));
+        animation = new Animation<>(1 / 10f, monsterTextureAtlas.getRegions());
+        final var texture = animation.getKeyFrame(elapsedTime);
+        setBounds(getX(), getY(), texture.originalWidth, texture.originalHeight);
+
+        this.checkpointReached = 0;
     }
 
     @Override
@@ -29,14 +30,15 @@ public class Monster extends Actor {
         batch.draw(animation.getKeyFrame(elapsedTime, true), getX(), getY());
     }
 
-    public void render() {
-        batch.begin();
-        draw(batch, 1);
-        batch.end();
-    }
-
     public void dispose() {
         monsterTextureAtlas.dispose();
     }
 
+    public int getCheckpointReached() {
+        return checkpointReached;
+    }
+
+    public void setCheckpointReached(int checkpointReached) {
+        this.checkpointReached = checkpointReached;
+    }
 }
