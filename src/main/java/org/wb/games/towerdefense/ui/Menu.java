@@ -1,4 +1,4 @@
-package org.wb.games.towerdefense.game;
+package org.wb.games.towerdefense.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -28,9 +28,7 @@ public class Menu implements InputProcessor {
         Gdx.input.setInputProcessor(this);
 
         batch = new SpriteBatch();
-        FileReader fileReader = new FileReader();
-        fileReader.createSkin();
-        skin = fileReader.getSkin();
+        skin = FileReader.loadUiSkin();
         stage = new Stage();
 
         stage.addActor(createButton(200, 20, (float) SCREEN_WIDTH / 2, (float) SCREEN_HEIGHT / 2, "Click here to begin"));

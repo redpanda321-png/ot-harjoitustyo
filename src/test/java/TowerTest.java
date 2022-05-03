@@ -18,11 +18,8 @@ public class TowerTest {
         var x = 10;
         var y = 10;
         var layer = mock(TiledMapTileLayer.class);
-        var tower = new Tower("torni", tile);
-
-        var result = tower.buildTower(x, y, layer);
-
-        assertThat(result).isTrue();
+        var tower = Tower.createTower(x, y, layer, tile);
+        assertThat(tower).isNotNull();
     }
 
     @Test
@@ -33,11 +30,8 @@ public class TowerTest {
         var y = 10;
         var layer = mock(TiledMapTileLayer.class);
         when(layer.getCell(eq(x), eq(y))).thenReturn(mock(TiledMapTileLayer.Cell.class));
-        var tower = new Tower("tower", tile);
-
-        var result = tower.buildTower(x, y, layer);
-
-        assertThat(result).isFalse();
+        var tower = Tower.createTower(x, y, layer, tile);
+        assertThat(tower).isNull();
     }
 
 }

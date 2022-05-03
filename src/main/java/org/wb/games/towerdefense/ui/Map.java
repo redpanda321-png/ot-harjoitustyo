@@ -13,11 +13,8 @@ public class Map {
 
 
     public Map(String mapName) {
-        FileReader fileReader = new FileReader();
         this.mapName = mapName;
-//        this.gameMap = new TmxMapLoader().load("src/assets/Tile/" + mapName + ".tmx");
-        this.gameMap = fileReader.loadMap(mapName);
-
+        this.gameMap = FileReader.loadMap(mapName);
         this.gameLayer = (TiledMapTileLayer) gameMap.getLayers().get("Game");
     }
 

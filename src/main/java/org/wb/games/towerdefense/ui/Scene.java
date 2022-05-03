@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.wb.games.towerdefense.game.Game;
-import org.wb.games.towerdefense.game.Menu;
 
 import static org.wb.games.towerdefense.ui.TowerDefense.SCREEN_HEIGHT;
 import static org.wb.games.towerdefense.ui.TowerDefense.SCREEN_WIDTH;
@@ -53,7 +52,6 @@ public class Scene implements ApplicationListener {
 
                 startMenu();
             }
-//            drawMenu();
             menu.drawMenu();
 
         } else if (state == 1) {
@@ -64,19 +62,12 @@ public class Scene implements ApplicationListener {
             }
 
             game.render();
-            font.draw(batch, "Tower count: " + game.getTowerCount(), SCREEN_WIDTH - 208, SCREEN_HEIGHT - 10);
+//            font.draw(batch, "Tower count: " + game.getTowerCount(), SCREEN_WIDTH - 208, SCREEN_HEIGHT - 10);
             font.draw(batch, game.mousePosition(), SCREEN_WIDTH - 208, SCREEN_HEIGHT - 150);
         }
         batch.end();
 
     }
-
-//    public void drawMenu() {
-//        font.draw(batch, "main menu screen", SCREEN_WIDTH / 2 - 100, 500);
-//        font.draw(batch, "press spacebar to begin", SCREEN_WIDTH / 2 - 100, 400);
-//        font.draw(batch, "press esc to exit", SCREEN_WIDTH / 2 - 100, 200);
-//
-//    }
 
     public void startMenu() {
         menu = new Menu();

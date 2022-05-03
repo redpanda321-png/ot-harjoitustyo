@@ -17,15 +17,12 @@ public class Monster extends Actor {
     private int checkpointReached;
 
     public Monster() {
-//        monsterTextureAtlas = new TextureAtlas(Gdx.files.internal("src/assets/Monster/RedCyclops/RedCyclops.atlas"));
-        FileReader fileReader = new FileReader();
-        monsterTextureAtlas = fileReader.loadMonster();
-
+        monsterTextureAtlas = FileReader.loadMonster();
         animation = new Animation<>(1 / 10f, monsterTextureAtlas.getRegions());
         final var texture = animation.getKeyFrame(elapsedTime);
         setBounds(getX(), getY(), texture.originalWidth, texture.originalHeight);
-
         this.checkpointReached = 0;
+
     }
 
     @Override

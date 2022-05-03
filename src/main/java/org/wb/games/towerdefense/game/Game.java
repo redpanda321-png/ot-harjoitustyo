@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -16,6 +17,9 @@ import org.wb.games.towerdefense.ui.Map;
 import org.wb.games.towerdefense.ui.Scene;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.wb.games.towerdefense.ui.TowerDefense.*;
 
 
@@ -23,41 +27,35 @@ public class Game implements InputProcessor {
     private final OrthogonalTiledMapRenderer tiledMapRenderer;
     private final OrthographicCamera camera;
     private final TiledMapTileLayer layer;
-    private int towerCount = 0;
-    private final Monster redCyclops;
     private final Map map;
-    private final Tower stoneTower;
     private final Vector3 mousePos;
     private final Stage stage;
     private final Path path;
     private int count = 0;
+    private final List<Monster> monsters = new ArrayList<>();
+    private final List<Tower> towers = new ArrayList<>();
+    private final List<Projectile> arrows = new ArrayList<>();
+    private final TiledMapTile towerTile;
+
+    private final float tileWidth;
+    private final float tileHeight;
 
 
     public Game(final String mapName) {
         Gdx.input.setInputProcessor(this);
-
         this.map = new Map(mapName);
-
         tiledMapRenderer = new OrthogonalTiledMapRenderer(map.getMap());
         camera = new OrthographicCamera();
-
         camera.setToOrtho(false, map.getWidth() / ASPECT_RATIO, map.getHeight());
-
         layer = map.getGameLayer();
-        stoneTower = new Tower("Stone tower", map.getMap().getTileSets().getTileSet("TilesetElement").getTile(897));
-
+        towerTile = map.getMap().getTileSets().getTileSet("TilesetElement").getTile(897);
         path = new Path(map.getMap());
-
-        redCyclops = monsterCreate();
-//        redCyclops.setPosition(map.getTileWidth() * 4 + redCyclops.getWidth() / 2, SCREEN_HEIGHT - redCyclops.getHeight());
-
         mousePos = new Vector3();
         stage = new Stage();
 
-
-        stage.addActor(redCyclops);
+        tileHeight = (float) SCREEN_HEIGHT / map.getHeight();
+        tileWidth = (float) ((int) camera.viewportWidth) / map.getMapWidth();
     }
-
 
 
     public void render() {
@@ -69,23 +67,32 @@ public class Game implements InputProcessor {
         count++;
 
         if (count > FRAME_RATE * 4) {
-            stage.addActor(monsterCreate());
+            final Monster monster = monsterCreate();
+            stage.addActor(monster);
+            monsters.add(monster);
             count = 0;
         }
 
+        if (count > FRAME_RATE) {
+            towers.forEach(tower -> {
+                var arrow = tower.shoot(tileWidth, tileHeight);
+                //stage.addActor(arrow);
+                //arrows don't show up on screen yet
+                arrows.add(arrow);
+            });
+        }
+
         stage.act(Gdx.graphics.getDeltaTime());
+
         stage.draw();
+
         camera.unproject(mousePos);
     }
 
     private MoveToAction createMoveToAction(final Checkpoint checkpoint) {
         MoveToAction moveToCheckpoint = new MoveToAction();
-
-        float ratioY = (float) SCREEN_HEIGHT / map.getHeight();
-        float tileWidth = (float) ((int) camera.viewportWidth) / map.getMapWidth();
-
         float x = (float) checkpoint.getTileX() * tileWidth + tileWidth / 2;
-        float y = (float) checkpoint.getTileY() * map.getTileHeight() * ratioY;
+        float y = (float) checkpoint.getTileY() * map.getTileHeight() * tileHeight;
         moveToCheckpoint.setPosition(x, y);
 
         return moveToCheckpoint;
@@ -143,8 +150,9 @@ public class Game implements InputProcessor {
         final int cellY = (int) mousePos.y / map.getTileWidth();
 
         System.out.println("cellX: " + cellX + ", cellY: " + cellY);
-        if (stoneTower.buildTower(cellX, cellY, layer)) {
-            towerCount++;
+        final Tower tower = Tower.createTower(cellX, cellY, layer, towerTile);
+        if (tower != null) {
+            towers.add(tower);
         }
         return false;
     }
@@ -169,13 +177,8 @@ public class Game implements InputProcessor {
         return false;
     }
 
-
-    public int getTowerCount() {
-        return towerCount;
-    }
-
     public void dispose() {
-        redCyclops.dispose();
+        monsters.forEach(Monster::dispose);
     }
 
     public void mouseUpdate() {
@@ -184,13 +187,5 @@ public class Game implements InputProcessor {
 
     public String mousePosition() {
         return "x: " + (int) mousePos.x + ", " + "y: " + (int) mousePos.y;
-    }
-
-    public float getMouseX() {
-        return mousePos.x;
-    }
-
-    public float getMouseY() {
-        return mousePos.y;
     }
 }
