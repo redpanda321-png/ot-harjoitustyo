@@ -10,7 +10,6 @@ public class Projectile extends Actor {
     public Projectile() {
         Texture texture = FileReader.loadArrow();
         final Sprite sprite = new Sprite(texture);
-
         setBounds(getX(), getY(), texture.getWidth(), texture.getHeight());
     }
 }

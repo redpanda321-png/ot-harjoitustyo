@@ -62,8 +62,8 @@ public class Scene implements ApplicationListener {
             }
 
             game.render();
-//            font.draw(batch, "Tower count: " + game.getTowerCount(), SCREEN_WIDTH - 208, SCREEN_HEIGHT - 10);
             font.draw(batch, game.mousePosition(), SCREEN_WIDTH - 208, SCREEN_HEIGHT - 150);
+            font.draw(batch, "Press esc to return to menu", SCREEN_WIDTH - 208, SCREEN_HEIGHT - 50);
         }
         batch.end();
 
