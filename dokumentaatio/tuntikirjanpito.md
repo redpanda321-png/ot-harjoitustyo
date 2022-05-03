@@ -13,4 +13,6 @@
 | 22.4 | 3 | Monsterin liike eri paikkoihin |
 | 24.4 | 5 | Checkpoint systeemi liikuttaakseen Monster-olioita eri reittipisteiden kautta |
 | 26.4 | 5 | Lisätty Menu ja tapa siirtyä peliin Menu:sta, sekä pelin voi sulkea nyt näppäimistön avulla. <br /> Lisätty Checkstyle, sekvenssikaavio|
-| yht | 44 |
+| 2.5 | 2 | Ihmettelyä, että miksi ei toimi |
+| 3.5 | 5 | Lisää ihmettelyä, UI juttuja,  joitain metodin muutoksia ja lisätty uusi luokka Projectile |
+| yht | 51 |
