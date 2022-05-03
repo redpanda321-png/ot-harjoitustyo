@@ -3,6 +3,7 @@ package org.wb.games.towerdefense.ui;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import org.wb.games.towerdefense.helpers.FileReader;
 
 public class Map {
 
@@ -12,8 +13,11 @@ public class Map {
 
 
     public Map(String mapName) {
+        FileReader fileReader = new FileReader();
         this.mapName = mapName;
-        this.gameMap = new TmxMapLoader().load("src/assets/Tile/" + mapName + ".tmx");
+//        this.gameMap = new TmxMapLoader().load("src/assets/Tile/" + mapName + ".tmx");
+        this.gameMap = fileReader.loadMap(mapName);
+
         this.gameLayer = (TiledMapTileLayer) gameMap.getLayers().get("Game");
     }
 

@@ -35,6 +35,7 @@ public class Game implements InputProcessor {
 
     public Game(final String mapName) {
         Gdx.input.setInputProcessor(this);
+
         this.map = new Map(mapName);
 
         tiledMapRenderer = new OrthogonalTiledMapRenderer(map.getMap());
@@ -121,9 +122,6 @@ public class Game implements InputProcessor {
             dispose();
         }
 
-//        if (Scene.state == 0 && Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-//            Scene.state = 1;
-//        }
         return false;
     }
 

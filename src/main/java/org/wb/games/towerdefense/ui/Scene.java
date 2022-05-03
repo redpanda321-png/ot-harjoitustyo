@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import org.wb.games.towerdefense.game.Game;
 import org.wb.games.towerdefense.game.Menu;
 
@@ -17,13 +16,14 @@ import static org.wb.games.towerdefense.ui.TowerDefense.SCREEN_WIDTH;
 
 public class Scene implements ApplicationListener {
 
-    Game game;
+    private Game game;
     private BitmapFont font;
     private SpriteBatch batch;
     public static int state;
     private boolean inGame;
     private boolean inMenu;
-    Menu menu;
+    private Menu menu;
+
 
     @Override
     public void create() {
@@ -34,13 +34,6 @@ public class Scene implements ApplicationListener {
         state = 0;
         inGame = false;
         inMenu = false;
-//        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("src/assets/normalfont.ttf"));
-//        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-//        parameter.size = 20;
-//        font99 = generator.generateFont(parameter);
-//        generator.dispose();
-//        font99.setColor(Color.PURPLE);
-
     }
 
     @Override
@@ -57,17 +50,19 @@ public class Scene implements ApplicationListener {
         if (state == 0) {
             inGame = false;
             if (!inMenu) {
+
                 startMenu();
             }
-            font.draw(batch, "main menu screen", SCREEN_WIDTH / 2 - 100, 500);
-            font.draw(batch, "press spacebar to begin", SCREEN_WIDTH / 2 - 100, 400);
-            font.draw(batch, "press esc to exit", SCREEN_WIDTH / 2 - 100, 200);
+//            drawMenu();
+            menu.drawMenu();
 
         } else if (state == 1) {
             inMenu = false;
             if (!inGame) {
+
                 startGame();
             }
+
             game.render();
             font.draw(batch, "Tower count: " + game.getTowerCount(), SCREEN_WIDTH - 208, SCREEN_HEIGHT - 10);
             font.draw(batch, game.mousePosition(), SCREEN_WIDTH - 208, SCREEN_HEIGHT - 150);
@@ -75,6 +70,13 @@ public class Scene implements ApplicationListener {
         batch.end();
 
     }
+
+//    public void drawMenu() {
+//        font.draw(batch, "main menu screen", SCREEN_WIDTH / 2 - 100, 500);
+//        font.draw(batch, "press spacebar to begin", SCREEN_WIDTH / 2 - 100, 400);
+//        font.draw(batch, "press esc to exit", SCREEN_WIDTH / 2 - 100, 200);
+//
+//    }
 
     public void startMenu() {
         menu = new Menu();

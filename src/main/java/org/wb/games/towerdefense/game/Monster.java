@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import org.wb.games.towerdefense.helpers.FileReader;
 
 public class Monster extends Actor {
 
@@ -16,7 +17,10 @@ public class Monster extends Actor {
     private int checkpointReached;
 
     public Monster() {
-        monsterTextureAtlas = new TextureAtlas(Gdx.files.internal("src/assets/Monster/RedCyclops/RedCyclops.atlas"));
+//        monsterTextureAtlas = new TextureAtlas(Gdx.files.internal("src/assets/Monster/RedCyclops/RedCyclops.atlas"));
+        FileReader fileReader = new FileReader();
+        monsterTextureAtlas = fileReader.loadMonster();
+
         animation = new Animation<>(1 / 10f, monsterTextureAtlas.getRegions());
         final var texture = animation.getKeyFrame(elapsedTime);
         setBounds(getX(), getY(), texture.originalWidth, texture.originalHeight);
