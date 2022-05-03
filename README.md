@@ -48,7 +48,9 @@ java -XstartOnFirstThread -jar target/myJar-jar-with-dependencies.jar
 voi luoda, sekä suorittaa ohjelman mac OS X:llä
 
 ### Checkstyle
-Checkstyle on vielä toteuttamatta.
-
+Checkstyle raportin voi luoda komennolla
+```
+mvn jxr:jxr checkstyle:checkstyle
+```
 ### Javadoc
 Javadoc on vielä toteuttamatta.

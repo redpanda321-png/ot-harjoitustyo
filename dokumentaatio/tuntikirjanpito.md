@@ -10,4 +10,7 @@
 | 9.4 | 5 | Ruutujen manipulointi, esim tornien laittaminen kartalle |
 | 10.4 | 3 | Monster-luokan lisäys, esimerkkihirviön animointi, lisätty UI placeholder infobar elementtiä varten |
 | 12.4 | 5 | Eritelty toiminnallisuuksia eri luokkiin ja paketteihin, kirjoitettu testejä |
-| yht | 31 |
+| 22.4 | 3 | Monsterin liike eri paikkoihin |
+| 24.4 | 5 | Checkpoint systeemi liikuttaakseen Monster-olioita eri reittipisteiden kautta |
+| 26.4 | 5 | Lisätty Menu ja tapa siirtyä peliin Menu:sta, sekä pelin voi sulkea nyt näppäimistön avulla. <br /> Lisätty Checkstyle, sekvenssikaavio|
+| yht | 44 |
