@@ -49,7 +49,6 @@ public class Scene implements ApplicationListener {
         if (state == 0) {
             inGame = false;
             if (!inMenu) {
-
                 startMenu();
             }
             menu.drawMenu();
@@ -57,13 +56,13 @@ public class Scene implements ApplicationListener {
         } else if (state == 1) {
             inMenu = false;
             if (!inGame) {
-
                 startGame();
             }
 
             game.render();
             font.draw(batch, game.mousePosition(), SCREEN_WIDTH - 208, SCREEN_HEIGHT - 150);
             font.draw(batch, "Press esc to return to menu", SCREEN_WIDTH - 208, SCREEN_HEIGHT - 50);
+            font.draw(batch, "Score: " + game.getScore(), SCREEN_WIDTH - 208, SCREEN_HEIGHT - 250);
         }
         batch.end();
 

@@ -1,4 +1,4 @@
-# Otsikko
+# Tower Defence
 ## Dokumentaatio
 [Työaikamäärittely](https://github.com/redpanda321-png/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
@@ -36,14 +36,14 @@ Komento
 ```
 mvn clean package
 ```
-generoi hakemistoon target suoritettavan jar-tiedoston myJar-jar-with-dependencies.jar
+generoi hakemistoon target suoritettavan jar-tiedoston TowerDefence-jar-with-dependencies.jar
 
 Mac OS X:llä suorittaessa ohjelmaa tarvitaan lisäkomento "-XstartOnFirstThread"
 
   Siis komennoilla
 ```
 mvn clean package
-java -XstartOnFirstThread -jar target/myJar-jar-with-dependencies.jar
+java -XstartOnFirstThread -jar target/TowerDefence-jar-with-dependencies.jar
 ```
 voi luoda, sekä suorittaa ohjelman mac OS X:llä
 
@@ -53,4 +53,4 @@ Checkstyle raportin voi luoda komennolla
 mvn jxr:jxr checkstyle:checkstyle
 ```
 ### Javadoc
-Javadoc on vielä toteuttamatta.
+Javadoc on toteuttamatta.

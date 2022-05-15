@@ -1,16 +1,12 @@
 package org.wb.games.towerdefense.ui;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import org.lwjgl.system.CallbackI;
-import org.wb.games.towerdefense.ui.Scene;
 
 import org.wb.games.towerdefense.helpers.FileReader;
 
@@ -25,7 +21,6 @@ public class Menu {
     private final SpriteBatch batch;
 
     public Menu() {
-
         batch = new SpriteBatch();
         skin = FileReader.loadUiSkin();
         stage = new Stage();

@@ -2,7 +2,11 @@ package org.wb.games.towerdefense.game;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+
+import static org.wb.games.towerdefense.helpers.Utils.calculateDuration;
 
 public class Tower {
 
@@ -17,11 +21,17 @@ public class Tower {
     }
 
     public Projectile shoot(float tileWidth, float tileHeight) {
+        float y = tileHeight * cellY + tileHeight / 2;
+        int cells = 35;
         Projectile arrow = new Projectile();
-        arrow.setPosition(tileWidth * cellX, tileHeight * cellY);
+        arrow.setPosition(tileWidth * cellX + tileWidth * 2, y);
+        SequenceAction sequenceAction = new SequenceAction();
         MoveToAction moveToAction = new MoveToAction();
-        moveToAction.setPosition(tileWidth * 32, tileHeight * cellY);
-        arrow.addAction(moveToAction);
+        moveToAction.setPosition(tileWidth * cells, y);
+        moveToAction.setDuration(calculateDuration(cellX, cellY, cells, cellY) * 0.3f);
+        sequenceAction.addAction(moveToAction);
+        sequenceAction.addAction(Actions.removeActor());
+        arrow.addAction(sequenceAction);
         return arrow;
     }
 
@@ -34,10 +44,4 @@ public class Tower {
         }
         return null;
     }
-
-
-    public int getTowerCount() {
-        return towerCount;
-    }
 }
-

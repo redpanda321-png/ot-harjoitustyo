@@ -20,6 +20,6 @@ public class TowerDefense {
         config.setTitle("Tower Defense");
         config.setResizable(false);
         new Lwjgl3Application(new Scene(), config);
-        System.exit(0);     //not sure if this is necessary, see Menu.exit();
+        System.exit(0);
     }
 }

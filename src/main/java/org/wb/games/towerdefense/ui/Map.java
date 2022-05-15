@@ -2,7 +2,6 @@ package org.wb.games.towerdefense.ui;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import org.wb.games.towerdefense.helpers.FileReader;
 
 public class Map {

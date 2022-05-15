@@ -5,12 +5,10 @@ public class Checkpoint {
 
     private final int tileX;
     private final int tileY;
-    private final int order;
 
-    public Checkpoint(int tileX, int tileY, int order) {
+    public Checkpoint(int tileX, int tileY) {
         this.tileX = tileX;
         this.tileY = tileY;
-        this.order = order;
     }
 
     public int getTileX() {

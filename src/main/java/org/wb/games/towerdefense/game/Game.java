@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import org.wb.games.towerdefense.ui.Map;
@@ -18,8 +19,10 @@ import org.wb.games.towerdefense.ui.Scene;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import static org.wb.games.towerdefense.helpers.Utils.calculateDuration;
 import static org.wb.games.towerdefense.ui.TowerDefense.*;
 
 
@@ -31,7 +34,6 @@ public class Game implements InputProcessor {
     private final Vector3 mousePos;
     private final Stage stage;
     private final Path path;
-    private int count = 0;
     private final List<Monster> monsters = new ArrayList<>();
     private final List<Tower> towers = new ArrayList<>();
     private final List<Projectile> arrows = new ArrayList<>();
@@ -40,6 +42,11 @@ public class Game implements InputProcessor {
     private final float tileWidth;
     private final float tileHeight;
 
+    private final static float MONSTER_TIME_OUT = 4;
+    private float monsterTime = 0;
+    private final static float ARROW_TIME_OUT = 3;
+    private float arrowTime = 0;
+    private int score = 0;
 
     public Game(final String mapName) {
         Gdx.input.setInputProcessor(this);
@@ -64,29 +71,38 @@ public class Game implements InputProcessor {
         tiledMapRenderer.setView(camera);
         tiledMapRenderer.render();
         mouseUpdate();
-        count++;
+        float dt = Gdx.graphics.getDeltaTime();
+        monsterTime += dt;
+        arrowTime += dt;
 
-        if (count > FRAME_RATE * 4) {
+        if (monsterTime > MONSTER_TIME_OUT) {
             final Monster monster = monsterCreate();
             stage.addActor(monster);
             monsters.add(monster);
-            count = 0;
+            monsterTime -= MONSTER_TIME_OUT;
         }
 
-        if (count > FRAME_RATE) {
+        if (arrowTime > ARROW_TIME_OUT) {
             towers.forEach(tower -> {
-                var arrow = tower.shoot(tileWidth, tileHeight);
-                //stage.addActor(arrow);
-                //arrows don't show up on screen yet
+                var arrow = tower.shoot(tileWidth, tileHeight * map.getTileHeight());
+                stage.addActor(arrow);
                 arrows.add(arrow);
             });
+            removeArrows();
+            arrowTime -= ARROW_TIME_OUT;
+
+        }
+        if (!monsters.isEmpty()) {
+            detectCollision();
         }
 
-        stage.act(Gdx.graphics.getDeltaTime());
-
+        stage.act(dt);
         stage.draw();
-
         camera.unproject(mousePos);
+    }
+
+    private void removeArrows() {
+        arrows.removeIf(arrow -> arrow.getStage() == null);
     }
 
     private MoveToAction createMoveToAction(final Checkpoint checkpoint) {
@@ -94,31 +110,54 @@ public class Game implements InputProcessor {
         float x = (float) checkpoint.getTileX() * tileWidth + tileWidth / 2;
         float y = (float) checkpoint.getTileY() * map.getTileHeight() * tileHeight;
         moveToCheckpoint.setPosition(x, y);
-
         return moveToCheckpoint;
     }
 
-    private float calculateDuration(Checkpoint previous, Checkpoint current) {
-        return previous.getTileX() != current.getTileX() ?
-                (float) Math.abs(previous.getTileX() - current.getTileX()) / 3 :
-                (float) Math.abs(previous.getTileY() - current.getTileY()) / 3;
-    }
 
     private Monster monsterCreate() {
         Monster monster = new Monster();
         monster.setPosition(map.getTileWidth() * 4 + monster.getWidth() / 2, SCREEN_HEIGHT - monster.getHeight());
 
         SequenceAction sequenceAction = new SequenceAction();
-        Checkpoint previousPoint = new Checkpoint(4, 1, 0);
+        Checkpoint previousPoint = new Checkpoint(4, 1);
         for (Checkpoint checkpoint : path.getCheckpoints()) {
             MoveToAction moveToAction = createMoveToAction(checkpoint);
             moveToAction.setDuration(calculateDuration(previousPoint, checkpoint));
             sequenceAction.addAction(moveToAction);
             previousPoint = checkpoint;
         }
+        sequenceAction.addAction(Actions.removeActor());
         monster.addAction(sequenceAction);
 
         return monster;
+    }
+
+    private void detectCollision() {
+        Iterator<Monster> monsterIterator = monsters.iterator();
+        while (monsterIterator.hasNext()) {
+            Monster monster = monsterIterator.next();
+            Iterator<Projectile> arrowIterator = arrows.iterator();
+            while (arrowIterator.hasNext()) {
+                Projectile arrow = arrowIterator.next();
+                boolean hit = monster.collides(arrow.getX(), arrow.getY());
+                if (hit) {
+                    addScore();
+                    arrow.remove();
+                    arrowIterator.remove();
+                    monster.die();
+                    monsterIterator.remove();
+                    break;
+                }
+            }
+        }
+    }
+
+    private void addScore() {
+        score++;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     @Override
@@ -179,6 +218,7 @@ public class Game implements InputProcessor {
 
     public void dispose() {
         monsters.forEach(Monster::dispose);
+        arrows.forEach(Projectile::dispose);
     }
 
     public void mouseUpdate() {
