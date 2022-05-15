@@ -15,4 +15,6 @@
 | 26.4 | 5 | Lisätty Menu ja tapa siirtyä peliin Menu:sta, sekä pelin voi sulkea nyt näppäimistön avulla. <br /> Lisätty Checkstyle, sekvenssikaavio|
 | 2.5 | 2 | Ihmettelyä, että miksi ei toimi |
 | 3.5 | 5 | Lisää ihmettelyä, UI juttuja,  joitain metodin muutoksia ja lisätty uusi luokka Projectile |
-| yht | 51 |
+| 14.5 | 5 | Tornit ampuvat ja hirviöt katoavat, kun niihin osuu nuoli |
+| 14.5 | 3 | Testausta, dokumentaatio |
+| yht | 59 |
