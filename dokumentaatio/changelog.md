@@ -23,3 +23,8 @@
 - Korjattu filepath ongelma, joka oli kaatanut ohjelman, kun käynnistää jar-tiedostosta
 - Lisätty nappi alkuun
 - Lisätty Projectile-luokka, jossa määritellään tornien ammukset
+
+## Viikko 7
+- Testausta
+- Tornit ampuvat
+- Hirviöt katoavat kun niihin osuu nuoli
